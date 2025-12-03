@@ -1,11 +1,15 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app) # permite que o React acesse a API Flask
 
 # banco de dados em memória (lista de pets)
 pets = []
+
+def home():
+    return "Servidor flask rodando no render!" 
 
 # rota para criar uma publicação de pet para adoção
 @app.route('/pets', methods=['POST'])
