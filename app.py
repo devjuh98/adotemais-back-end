@@ -1,9 +1,15 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import os
+from pymongo import MongoClient
 
 app = Flask(__name__)
 CORS(app) # permite que o React acesse a API Flask
+
+mongo_uri = os.environ.get('MONGO_URI') 
+client = MongoClient(mongo_uri)
+db = client['adote_mais']
+pets_collection = db['pets']
 
 # banco de dados em memória (lista de pets)
 pets = []
